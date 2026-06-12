@@ -24,8 +24,8 @@ def get_csrf_token(
     """
     soup = BeautifulSoup(markup=markup, features="html.parser")
     tag = soup.find(name="input", attrs={"name": param_name})
-    if tag and tag.get("value"):
-        return {param_name: tag["value"]}  # pyright: ignore[reportReturnType]
+    if tag and len(tag.get_attribute_list("value")) == 1:
+        return {param_name: tag.get_attribute_list("value")[0]}
     return {}
 
 
@@ -47,7 +47,11 @@ def scrape_corpus_metadata(tag: Tag) -> dict[str, str]:
             # note: there is a unique download link for each distinct
             # invoice date that is associated woith a file
             invoice_date = cells[2].get_text(strip=True)
-            download_link = cells[3].a["href"]   # pyright: ignore[reportOptionalSubscript]
+            dl_tag = cells[3].a
+            if dl_tag and len(dl_tag.get_attribute_list("href")) == 1:
+                download_link = dl_tag.get_attribute_list("href")[0]
+            else:
+                raise KeyError("No link found")
 
             # the file-level metadata is not broken up into distinct cells, so
             # we have to parse it more. the "file" metadata is also not

@@ -30,6 +30,7 @@ lint = [
     "mypy ~= 1.17.1",
     "pydoclint ~= 0.6.10",
     "pylint ~= 3.3",
+    "types-PyYAML",
 ]
 
 [project.urls]
@@ -65,9 +66,6 @@ addopts = [
     "-v",
     "-s",
     "--junit-xml=artifacts/pytest/airflow_test.xml",
-    "--tracing=retain-on-failure",
-    "--screenshot=only-on-failure",
-    "--output=artifacts/pytest/e2e",
     "--cov-report=term",
     "--cov-report=html:artifacts/coverage",
     "--cov=mokelumne",
