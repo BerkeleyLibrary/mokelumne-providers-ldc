@@ -15,12 +15,10 @@ from .. import fixtures
 
 class TestLDC:
     """Test class for mokelumne.util.ldc."""
-    with (
-        importlib.resources.path(fixtures, "ldc-treebank-3.json") as test_json,
-        open(test_json, encoding="utf-8") as fh
-    ):
-        duplicate_items = json.loads(fh.read())
-        single_item = [duplicate_items[0]]
+    with importlib.resources.path(fixtures, "ldc-treebank-3.json") as test_json:
+        with open(test_json, encoding="utf-8") as fh:
+            duplicate_items = json.loads(fh.read())
+            single_item = [duplicate_items[0]]
 
     @pytest.mark.parametrize(
         "markup,param_name,expected",

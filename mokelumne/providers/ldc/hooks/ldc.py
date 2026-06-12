@@ -86,11 +86,9 @@ class LDCHook(BaseHook):
     def get_corpora_response(self) -> requests.Response:
         """Fetch the LDC corpora downloads page response."""
         connection = self.get_connection(self.conn_id)
+        assert connection.host is not None
         session = self.get_conn()
-        datasets_url = urljoin(
-            connection.host,  # pyright: ignore[reportArgumentType]
-            "organization/downloads"
-        )
+        datasets_url = urljoin(connection.host, "organization/downloads")
 
         response = session.get(datasets_url, stream=True)
         if response.status_code == 401:
@@ -112,8 +110,9 @@ class LDCHook(BaseHook):
             raise AirflowException("Download link is missing")
 
         connection = self.get_connection(self.conn_id)
+        assert connection.host is not None
         session = self.get_conn()
-        dl_uri = urljoin(connection.host, download_link)  # pyright: ignore[reportArgumentType]
+        dl_uri = urljoin(connection.host, download_link)
         response = session.get(dl_uri, stream=True)
         if response.status_code == 401:
             logger.warning("LDC download request received 401, refreshing session")
