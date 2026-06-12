@@ -7,7 +7,7 @@ import pytest
 
 from bs4 import BeautifulSoup
 
-from mokelumne.util.ldc import (
+from mokelumne.providers.ldc.util.ldc import (
     filter_corpora, get_csrf_token, get_latest_invoice_date, scrape_corpus_metadata,
 )
 from .. import fixtures
@@ -148,4 +148,3 @@ class TestLDC:
     ) -> None:
         """Ensure corpora are filtered correctly by corpus_id and filename regex."""
         assert filter_corpora(corpora=corpora, corpus_id=corpus_id, filename_regex=filename_regex) == expected
-

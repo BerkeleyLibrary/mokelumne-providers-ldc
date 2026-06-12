@@ -10,7 +10,7 @@ import requests
 from airflow.sdk.exceptions import AirflowException
 from airflow.sdk import BaseHook
 
-from mokelumne.util.ldc import get_csrf_token
+from mokelumne.providers.ldc.util.ldc import get_csrf_token
 
 logger = logging.getLogger(__name__)
 
