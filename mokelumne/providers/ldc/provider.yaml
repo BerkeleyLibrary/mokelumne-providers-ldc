@@ -1,4 +1,4 @@
-package-name: mokelumne_providers_ldc
+package-name: mokelumne-providers-ldc
 name: LDC
 description: LDC Airflow provider.
 connection-types:

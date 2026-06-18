@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "mokelumne-providers-ldc"
-version = "1.0.5"
+version = "1.0.6"
 dependencies = [
     "apache-airflow-task-sdk == 1.2.2",
     "beautifulsoup4",
@@ -38,7 +38,7 @@ Repository = "https://github.com/BerkeleyLibrary/mokelumne-providers-ldc"
 Issues = "https://github.com/BerkeleyLibrary/mokelumne-providers-ldc/issues"
 
 [project.entry-points."apache_airflow_provider"]
-ldc = "mokelumne.providers.ldc.get_provider_info:get_provider_info"
+provider_info = "mokelumne.providers.ldc.get_provider_info:get_provider_info"
 
 [tool.mypy]
 python_version = "3.13"
