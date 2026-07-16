@@ -2,16 +2,14 @@
 
 from __future__ import annotations
 
-from pathlib import Path
 from unittest.mock import MagicMock
-
 import pytest
 import requests
 from airflow.sdk.exceptions import AirflowException
 
 from mokelumne.providers.ldc.hooks.ldc import LDCHook
 
-
+# pylint: disable=too-few-public-methods
 class DummyConnection:
     """Mock Airflow connection."""
     host = "https://catalog.ldc.upenn.edu"
@@ -27,8 +25,9 @@ def make_login_page_response(csrf_value: str = "abc") -> MagicMock:
     return response
 
 
-def make_download_response(status_code: int = 200, headers: dict[str, str] | 
-None = None) -> MagicMock:
+def make_download_response(
+    status_code: int = 200, headers: dict[str, str] | None = None
+) -> MagicMock:
     """Create a mock download response."""
     response = MagicMock(spec=requests.Response)
     response.status_code = status_code
